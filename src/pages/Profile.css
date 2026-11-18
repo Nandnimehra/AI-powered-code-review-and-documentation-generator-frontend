@@ -1,0 +1,138 @@
+.profile-page {
+  --bg: #080b12;
+  --panel: #0d121c;
+  --panel-2: #111827;
+  --line: #1c2433;
+  --border: #2a3447;
+  --text: #e6e9f0;
+  --muted: #7b8497;
+  --blue: #3b82f6;
+  --critical: #ff6b6b;
+  --major: #f5b82e;
+  --minor: #9aa3b5;
+
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 16px;
+  background: #131313;
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  text-align: left;
+}
+.profile-page *, .profile-page *::before, .profile-page *::after { box-sizing: border-box; margin: 0; }
+.profile-page button, .profile-page input, .profile-page select { font: inherit; }
+
+.pf-icon {
+  width: 18px; height: 18px; flex: none;
+  fill: none; stroke: currentColor;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+
+.pf-card {
+  width: min(860px, 100%);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 32px;
+}
+
+/* ---------- Buttons ---------- */
+.pf-btn-primary, .pf-btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 20px; border-radius: 14px; cursor: pointer;
+  text-decoration: none; font-size: 16px; transition: filter .15s, background .15s;
+}
+.pf-btn-primary { background: var(--blue); color: #fff; border: 0; }
+.pf-btn-primary:hover:not(:disabled) { filter: brightness(1.1); }
+.pf-btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+.pf-btn-outline:hover:not(:disabled) { background: var(--panel-2); }
+.pf-btn-primary:disabled, .pf-btn-outline:disabled { opacity: .45; cursor: not-allowed; }
+
+/* ---------- Header + user ---------- */
+.pf-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+.pf-user { display: flex; align-items: center; gap: 20px; margin-top: 28px; }
+.pf-avatar {
+  width: 84px; height: 84px; border-radius: 50%; flex: none;
+  background: #16254a; color: #7cb0ff;
+  display: grid; place-items: center; font-size: 28px; font-weight: 600;
+  border: 2px solid #1f3566;
+}
+.pf-user h1 { font-size: 28px; font-weight: 600; letter-spacing: -.3px; }
+.pf-user p { margin-top: 4px; color: var(--muted); }
+
+/* ---------- Stats ---------- */
+.pf-stats { margin-top: 28px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.pf-stat {
+  background: var(--panel-2); border: 1px solid var(--line);
+  border-radius: 16px; padding: 18px 22px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.pf-stat span { color: #98a1b3; }
+.pf-stat strong { font-size: 32px; font-weight: 600; line-height: 1; }
+.critical { color: var(--critical); }
+.major { color: var(--major); }
+.minor { color: var(--minor); }
+
+/* ---------- Form ---------- */
+.pf-form {
+  margin-top: 28px; padding: 26px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.pf-form h2 { font-size: 18px; font-weight: 600; }
+.pf-form h2:not(:first-child) { margin-top: 10px; }
+
+.pf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pf-grid .wide { grid-column: 1 / -1; }
+
+.pf-form label { display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #aab2c3; }
+
+.pf-form input[type="text"],
+.pf-form input[type="email"],
+.pf-form input:not([type]),
+.pf-form select {
+  height: 50px; padding: 0 16px;
+  background: var(--bg); color: var(--text);
+  border: 1.5px solid var(--border); border-radius: 14px;
+  transition: border-color .15s;
+}
+.pf-form input:focus, .pf-form select:focus { outline: none; border-color: var(--blue); }
+.pf-form input:disabled { opacity: .55; cursor: not-allowed; }
+.pf-form select option { background: var(--panel); }
+
+.pf-form input:-webkit-autofill {
+  -webkit-text-fill-color: var(--text);
+  box-shadow: 0 0 0 1000px var(--bg) inset;
+}
+
+.pf-switch-row {
+  flex-direction: row !important; align-items: center; justify-content: space-between;
+  gap: 16px !important; padding: 10px 16px;
+  background: var(--bg); border: 1.5px solid var(--border); border-radius: 14px;
+  color: var(--text) !important; font-size: 15px !important;
+}
+.pf-switch-row small { display: block; margin-top: 2px; color: var(--muted); font-size: 13px; }
+.pf-switch-row input { width: 20px; height: 20px; accent-color: var(--blue); cursor: pointer; flex: none; }
+
+.pf-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 6px; }
+
+/* ---------- Toast ---------- */
+.pf-toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: #11203a; color: #8ab4ff;
+  border: 1px solid #1f3566; border-radius: 999px;
+  padding: 12px 24px; font-size: 15px; z-index: 20;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 720px) {
+  .pf-card { padding: 20px; }
+  .pf-stats { grid-template-columns: repeat(2, 1fr); }
+  .pf-grid { grid-template-columns: 1fr; }
+  .pf-form { padding: 18px; }
+}

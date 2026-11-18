@@ -1,0 +1,374 @@
+/* Everything is scoped under .tufy-page so it won't clash with Landing/Login styles */
+.tufy-page {
+  --bg: #080b12;
+  --side: #0a0e17;
+  --panel: #0d121c;
+  --panel-2: #111827;
+  --line: #1c2433;
+  --border: #2a3447;
+  --text: #e6e9f0;
+  --muted: #7b8497;
+  --blue: #3b82f6;
+  --blue-soft: #8ab4ff;
+  --active: #11203a;
+  --critical: #ff6b6b;
+  --critical-bg: #3a1a20;
+  --major: #f5b82e;
+  --major-bg: #3a2c12;
+  --minor: #9aa3b5;
+  --minor-bg: #1b2230;
+  --mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: #131313;
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  text-align: left;
+}
+
+.tufy-page *,
+.tufy-page *::before,
+.tufy-page *::after { box-sizing: border-box; margin: 0; }
+
+.tufy-page button,
+.tufy-page textarea { font: inherit; }
+
+.t-icon {
+  width: 18px; height: 18px; flex: none;
+  fill: none; stroke: currentColor;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* ---------- Shell ---------- */
+.tufy {
+  width: min(1200px, 100%);
+  height: 100%;
+  max-height: 780px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* ---------- Sidebar ---------- */
+.t-sidebar {
+  background: var(--side);
+  border-right: 1px solid var(--line);
+  padding: 22px 18px;
+  display: flex; flex-direction: column; gap: 14px;
+  min-height: 0;
+}
+.t-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.t-logo {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--blue); color: #fff;
+  display: grid; place-items: center; font-weight: 700;
+}
+.t-brand-name { font-size: 20px; font-weight: 600; }
+
+.t-btn-outline {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px; border-radius: 14px;
+  background: transparent; color: var(--text);
+  border: 1.5px solid var(--border); cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.t-btn-outline:hover { background: var(--panel-2); border-color: #3a4660; }
+
+.t-side-label { color: var(--muted); font-size: 14px; margin-top: 10px; }
+
+.t-recent { display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
+.t-recent button {
+  text-align: left; padding: 12px 14px; border-radius: 12px;
+  border: 0; background: transparent; color: #b6bdcc; cursor: pointer;
+}
+.t-recent button:hover { background: var(--panel-2); }
+.t-recent button.active { background: var(--active); color: var(--blue-soft); }
+
+.t-side-bottom { margin-top: auto; display: flex; flex-direction: column; gap: 4px; }
+.t-side-link {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; border-radius: 12px;
+  color: #aab2c3; text-decoration: none;
+}
+.t-side-link:hover { background: var(--panel-2); color: var(--text); }
+
+/* ---------- Main ---------- */
+.t-main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+
+.t-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 76px; flex: none;
+  border-bottom: 1px solid var(--line);
+}
+.t-topbar h1 { font-size: 19px; font-weight: 500; }
+
+.t-badges { display: flex; gap: 10px; }
+.t-badge { padding: 8px 18px; border-radius: 999px; font-size: 14px; white-space: nowrap; }
+.t-badge.critical { background: var(--critical-bg); color: var(--critical); }
+.t-badge.major    { background: var(--major-bg);    color: var(--major); }
+.t-badge.minor    { background: var(--minor-bg);    color: var(--minor); }
+
+/* ---------- Chat ---------- */
+.t-chat {
+  flex: 1; min-height: 0; overflow-y: auto;
+  padding: 28px 32px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+
+.t-user-code {
+  align-self: flex-end; max-width: 70%;
+  background: var(--panel-2); border-radius: 18px; padding: 18px 24px;
+  font-family: var(--mono); font-size: 15px; line-height: 1.6;
+  white-space: pre-wrap; overflow-x: auto;
+}
+
+.t-reply { display: flex; gap: 16px; align-items: flex-start; }
+.t-avatar {
+  width: 40px; height: 40px; border-radius: 12px; flex: none;
+  background: var(--blue); display: grid; place-items: center; font-weight: 700;
+}
+.t-cards { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; max-width: 620px; }
+
+.t-card {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 16px; padding: 18px 24px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.t-card-head { display: flex; align-items: center; gap: 12px; }
+.t-tag { padding: 5px 16px; border-radius: 999px; font-size: 15px; white-space: nowrap; }
+.t-tag.critical { background: var(--critical-bg); color: var(--critical); }
+.t-tag.major    { background: var(--major-bg);    color: var(--major); }
+.t-tag.minor    { background: var(--minor-bg);    color: var(--minor); }
+.t-line { color: var(--muted); font-size: 15px; white-space: nowrap; }
+.t-card-title { font-size: 18px; }
+.t-card-hint { color: var(--muted); font-style: italic; }
+.t-link {
+  align-self: flex-start; background: none; border: 0; padding: 0;
+  color: #4f94ff; font-size: 17px; cursor: pointer;
+}
+.t-link:hover { text-decoration: underline; }
+
+.t-chips { display: flex; flex-wrap: wrap; gap: 12px; }
+.t-chip {
+  padding: 12px 24px; border-radius: 14px;
+  background: transparent; color: #cfd5e2;
+  border: 1.5px solid var(--border); cursor: pointer;
+}
+.t-chip:hover { background: var(--panel-2); }
+
+.t-empty { margin: auto; text-align: center; display: flex; flex-direction: column; gap: 12px; }
+.t-empty h2 { font-weight: 500; font-size: 26px; color: #8892a6; }
+.t-empty p { color: #5d6678; }
+
+/* ---------- Composer ---------- */
+.t-composer {
+  display: flex; gap: 16px; align-items: center; flex: none;
+  padding: 22px 32px; border-top: 1px solid var(--line);
+}
+.t-icon-btn {
+  width: 70px; height: 70px; border-radius: 16px; flex: none;
+  background: transparent; color: #aab2c3;
+  border: 1.5px solid var(--border); cursor: pointer;
+  display: grid; place-items: center;
+}
+.t-icon-btn:hover { background: var(--panel-2); }
+
+.t-composer textarea {
+  flex: 1; resize: none; height: 70px; max-height: 140px;
+  padding: 24px 22px; font-size: 17px; line-height: 1.2;
+  background: var(--bg); color: var(--text);
+  border: 1.5px solid var(--border); border-radius: 16px;
+}
+.t-composer textarea::placeholder { color: #5f6a80; }
+.t-composer textarea:focus { outline: none; border-color: var(--blue); }
+
+.t-send {
+  height: 70px; padding: 0 34px; border: 0; border-radius: 16px;
+  background: var(--blue); color: #fff; font-size: 19px; cursor: pointer;
+}
+.t-send:hover { filter: brightness(1.1); }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 760px) {
+  .tufy { grid-template-columns: 1fr; max-height: none; }
+  .t-sidebar { display: none; }
+  .t-topbar, .t-chat, .t-composer { padding-left: 16px; padding-right: 16px; }
+  .t-icon-btn, .t-composer textarea, .t-send { height: 56px; }
+  .t-icon-btn { width: 56px; }
+  .t-composer textarea { padding: 18px 16px; }
+}
+
+/* =====================================================================
+   Additions for the live-backend version (new message types, files, etc.)
+   ===================================================================== */
+
+.t-muted { color: var(--muted); font-size: 14px; }
+.t-pad { padding: 4px 14px; }
+.t-hidden { display: none; }
+
+/* messages you send */
+.t-user-code { max-height: 320px; overflow: auto; }
+.t-user-text {
+  align-self: flex-end; max-width: 70%;
+  background: var(--panel-2); border-radius: 18px; padding: 14px 22px;
+  font-size: 16px; line-height: 1.5;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+.t-filename {
+  display: block; margin-bottom: 8px;
+  font-family: Inter, system-ui, sans-serif; font-size: 12px; color: var(--muted);
+}
+
+/* bot cards */
+.t-cards { min-width: 0; }
+.t-card { max-width: 100%; min-width: 0; }
+.t-card strong { font-weight: 600; }
+
+.t-rich {
+  display: flex; flex-direction: column; gap: 10px;
+  font-size: 16px; line-height: 1.55;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+.t-pre {
+  font-family: var(--mono); font-size: 13.5px; line-height: 1.6;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+  padding: 14px 16px; white-space: pre; overflow-x: auto; max-width: 100%;
+}
+.t-code {
+  font-family: var(--mono); font-size: 14px; color: var(--blue-soft);
+  background: var(--bg); padding: 1px 6px; border-radius: 6px;
+}
+.t-text { color: #c3cadb; line-height: 1.55; }
+
+.t-sub {
+  color: var(--muted); font-size: 12px; text-transform: uppercase;
+  letter-spacing: .06em; margin-top: 8px;
+}
+.t-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.t-copy { background: none; border: 0; padding: 0; color: var(--muted); font-size: 12px; cursor: pointer; }
+.t-copy:hover { color: var(--text); }
+
+.t-doc { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.t-doc .t-pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.t-file { font-family: var(--mono); font-size: 14px; color: var(--blue-soft); }
+
+.t-fchips { display: flex; flex-wrap: wrap; gap: 8px; }
+.t-fchip {
+  font-family: var(--mono); font-size: 13px; padding: 5px 10px;
+  border-radius: 10px; background: var(--minor-bg); color: #c3cadb;
+}
+.t-fchip.accent { background: var(--active); color: var(--blue-soft); }
+
+.t-ol { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.t-ol li { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 14px; }
+.t-num {
+  width: 22px; height: 22px; border-radius: 50%; flex: none;
+  background: var(--blue); color: #fff; display: grid; place-items: center;
+  font-family: Inter, system-ui, sans-serif; font-size: 12px;
+}
+.t-notes { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; color: #c3cadb; line-height: 1.5; }
+.t-notes b { font-family: var(--mono); font-weight: 400; font-size: 14px; color: var(--blue-soft); }
+
+/* "thinking" dots */
+.t-dots { display: flex; gap: 6px; padding: 6px 0; }
+.t-dots span {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+  animation: t-bounce 1s infinite ease-in-out;
+}
+.t-dots span:nth-child(2) { animation-delay: .15s; }
+.t-dots span:nth-child(3) { animation-delay: .3s; }
+@keyframes t-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: .5; }
+  40% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* action chips sit under the last reply */
+.t-chips-end { padding-left: 56px; }
+
+/* backend problem banner */
+.t-banner {
+  background: var(--critical-bg); color: var(--critical);
+  border-radius: 12px; padding: 12px 16px; font-size: 15px;
+}
+
+/* files waiting to be sent */
+.t-pending { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 32px; flex: none; }
+.t-pfile {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 12px; border-radius: 10px;
+  background: var(--active); color: var(--blue-soft); font-size: 14px;
+}
+.t-pfile button { background: none; border: 0; padding: 0; color: inherit; cursor: pointer; display: grid; place-items: center; }
+.t-pfile .t-icon { width: 14px; height: 14px; }
+
+.t-send:disabled { opacity: .45; cursor: not-allowed; filter: none; }
+.t-composer textarea:disabled { opacity: .6; }
+
+@media (max-width: 760px) {
+  .t-pending { padding-left: 16px; padding-right: 16px; }
+  .t-chips-end { padding-left: 0; }
+}
+
+
+
+.t-proj {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.t-recent .t-proj > button:first-child {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+.t-recent .t-proj > .t-dots-btn {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #9aa4b2;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+}
+.t-proj:hover > .t-dots-btn,
+.t-recent .t-proj > .t-dots-btn:focus {
+  opacity: 1;
+}
+.t-menu {
+  position: absolute;
+  right: 36px;
+  top: 4px;
+  z-index: 20;
+  background: #141b2b;
+  border: 1px solid #243049;
+  border-radius: 10px;
+  padding: 4px;
+  min-width: 120px;
+}
+.t-recent .t-menu button {
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #e5e7eb;
+}
+.t-recent .t-menu button:hover {
+  background: #1e293b;
+}
+.t-recent .t-menu .danger {
+  color: #f87171;
+}
